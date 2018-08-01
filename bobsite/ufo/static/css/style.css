@@ -11,6 +11,10 @@ footer {
 #table1 {
 	border: black;
 }
+#saucer {
+	height: 60px;
+	width:  60px;
+}
 h2 {
 	color: white;
 }
