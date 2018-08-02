@@ -68,6 +68,8 @@ YEAR_CHOICES = [
 ('1963','1963'),
 ('1964','1964'),
 ('1965','1965'),
+('1966','1966'),
 ]
 class UserForm(forms.Form):
-    your_state= forms.CharField(label='select state ?', widget=forms.Select(choices=STATE_CHOICES))
+    your_state = forms.CharField(label='select state: ', widget=forms.Select(choices=STATE_CHOICES))
+    your_year = forms.CharField(label='select year: ', widget=forms.Select(choices=YEAR_CHOICES))
