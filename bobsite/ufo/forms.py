@@ -52,4 +52,4 @@ STATE_CHOICES =[('Alabama','AL'),
 ('Wyoming','WY'),
 ]
 class UserForm(forms.Form):
-    your_state= forms.CharField(label='select state ?', widget=forms.Select(choices=STAT_CHOICES))
+    your_state= forms.CharField(label='select state ?', widget=forms.Select(choices=STATE_CHOICES))
