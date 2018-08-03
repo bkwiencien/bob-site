@@ -15,6 +15,10 @@ footer {
 	height: 60px;
 	width:  60px;
 }
+#displaydiv {
+	background-color: #2253AF;
+	color: white;
+}
 #button1 {
 	color: white;
 }

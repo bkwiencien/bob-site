@@ -16,5 +16,7 @@ def getdata(request):
    # type  = request.POST['your_type']
     df = pd.read_csv('http://bit.ly/uforeports')
     df = df[df.State==state]
-    return( render(request,'index.html',context=dict1))
+    l_dict = {"listo":df.to_html()}
+   # print(df)
+    return render(request,"index.html",context=l_dict)
     
