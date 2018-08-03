@@ -17,9 +17,9 @@ def getdata(request):
    # type  = request.POST['your_type']
     df = pd.read_csv('http://bit.ly/uforeports')
     df = df[df.State==state]
-    df['Time'] = df['Time'].apply(fetch_year)
-    df = df[df.Time==year]
-    print(df.size)
+    if (year != 'ALL Years'):
+      df['Time'] = df['Time'].apply(fetch_year)
+      df = df[df.Time==year]
     if (df.size != 0):
       l_dict = {"listo":df.to_html()}
       return render(request,"index.html",context=l_dict)

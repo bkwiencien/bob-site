@@ -52,6 +52,7 @@ STATE_CHOICES =[('AL','Alabama'),
 ('WY','Wyoming'),
 ]
 YEAR_CHOICES = [
+('ALL Years','ALL Years'),
 ('1950','1950'),
 ('1951','1951'),
 ('1952','1952'),
