@@ -15,8 +15,14 @@ footer {
 	height: 60px;
 	width:  60px;
 }
+#button1 {
+	color: white;
+}
 h2 {
 	color: white;
+}
+#form {
+	color: black;
 }
 #dateo {
 	padding: 10px;

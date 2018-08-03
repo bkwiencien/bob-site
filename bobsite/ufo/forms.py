@@ -120,6 +120,11 @@ YEAR_CHOICES = [
 ('2015','2015'),
 ('2016','2016'),
 ]
+TYPE_CHOICES = [
+('graph','graph'),
+('list','list'),
+]
 class UserForm(forms.Form):
     your_state = forms.CharField(label='select state: ', widget=forms.Select(choices=STATE_CHOICES))
     your_year = forms.CharField(label='select year: ', widget=forms.Select(choices=YEAR_CHOICES))
+    your_type = forms.CharField(label='select type: ', widget=forms.Select(choices=TYPE_CHOICES))
