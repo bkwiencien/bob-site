@@ -13,6 +13,8 @@ def getdata(request):
     dict1 = {"form":UserForm}
     state = request.POST['your_state']
     year  = request.POST['your_year']
-    type  = request.POST['your_type']
+   # type  = request.POST['your_type']
+    df = pd.read_csv('http://bit.ly/uforeports')
+    df = df[df.State==state]
     return( render(request,'index.html',context=dict1))
     
