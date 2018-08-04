@@ -24,7 +24,8 @@ def getdata(request):
       df['Year'] = df['Time'].apply(fetch_year)
       df['Day_of_week'] = df['Time'].apply(fetch_date)
       l_dict = {"listo":df.to_html()}
-      return render(request,"index.html",context=l_dict)
+      dff = df
+      return render(request,"index.html",{"listo":df.to_html})
     else:
        return (render(request,"index.html",context=dictstatus))  
 def fetch_year(x):
