@@ -24,7 +24,6 @@ def getdata(request):
       df['Year'] = df['Time'].apply(fetch_year)
       df['Day_of_week'] = df['Time'].apply(fetch_date)
       l_dict = {"listo":df.to_html()}
-      dff = df
       return render(request,"index.html",{"listo":df.to_html})
     else:
        return (render(request,"index.html",context=dictstatus))  
@@ -33,3 +32,5 @@ def fetch_year(x):
 def fetch_date(x):
     day_dict={0:'Sunday',1:'Monday',2:'Tuesday',3:'Wednesday',4:'Thurdday',5:'Friday',6:'Saturday'}
     return(day_dict[pd.to_datetime(x).weekday()])
+def gen_bar_chart(frame):
+    return('none')    
