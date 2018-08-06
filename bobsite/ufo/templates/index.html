@@ -29,7 +29,8 @@
 </div>
 <div class="container">
 <div class="jumbotron">
-<div id="displaydiv"><center>{% autoescape off %}{{listo}}{% endautoescape %}</center></div>
+<!--<div id="displaydiv"><center>{% autoescape off %}{{listo}}{% endautoescape %}</center></div>-->
+<div id="displaydiv"><center>{{listo|safe}}</center></div>
 <br><br>
 <div id="chartdiv"><center><g>{{charto|safe}}</g></center></div>
 </div>

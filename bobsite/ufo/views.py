@@ -54,5 +54,5 @@ def gen_bar_chart(frame,req):
     print(f)
  #   render(req,"index.html",{"charto": plt.bar(y_pos, performance, align='center', alpha=0.5)})
     #render(req,"index.html",{"charto":f})
-    return(f)
+    return(fig)
 
