@@ -21,6 +21,7 @@ def fetch_date(x):
     day_dict={0:'Sunday',1:'Monday',2:'Tuesday',3:'Wednesday',4:'Thurdday',5:'Friday',6:'Saturday'}
     return(day_dict[pd.to_datetime(x).weekday()])
 def genbarchart(request):
+    plt.switch_backend('agg')
     dictstatus = {"status":"no data for that timeframe"}
     state = request.POST['your_state']
     year  = request.POST['your_year']
