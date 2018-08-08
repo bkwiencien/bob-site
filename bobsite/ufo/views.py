@@ -8,6 +8,10 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 import numpy as np
 import io
+from django.urls import reverse
+import pdb
+import json
+import base64
 
 
 # Create your views here.
@@ -30,8 +34,9 @@ def getdata(request):
       df['Year'] = df['Time'].apply(fetch_year)
       df['Day_of_week'] = df['Time'].apply(fetch_date)
       l_dict = {"listo":df.to_html()}
-      ff = gen_bar_chart(df,request)
-      return render(request,"index.html",{"listo":df.to_html,"charto":ff})
+      #pdb.set_trace()
+      print("about to call return render !!!")
+      return render(request,"index.html",{"listo":df.to_html,'charto':genbarchart(df)})
     else:
        return (render(request,"index.html",context=dictstatus))  
 def fetch_year(x):
@@ -39,8 +44,18 @@ def fetch_year(x):
 def fetch_date(x):
     day_dict={0:'Sunday',1:'Monday',2:'Tuesday',3:'Wednesday',4:'Thurdday',5:'Friday',6:'Saturday'}
     return(day_dict[pd.to_datetime(x).weekday()])
-def gen_bar_chart(frame,req):
-    t = frame['Shape Reported'].value_counts()
+def genbarchart(request):
+    #pdb.set_trace()
+    state = request.POST['your_state']
+    year  = request.POST['your_year']
+    df = pd.read_csv('http://bit.ly/uforeports')
+    df = df[df.State==state]
+    if (year != 'ALL Years'):
+      df['Year'] = df['Time'].apply(fetch_year)
+      df = df[df.Year==year]
+      df['Day_of_week'] = df['Time'].apply(fetch_date)
+    print("in genbarchart !!!!!!")
+    t = df['Shape Reported'].value_counts()
     fig = plt.figure()
     plt.rcParams["figure.figsize"] = [20,20]
     objects = tuple(t.index)
@@ -50,9 +65,22 @@ def gen_bar_chart(frame,req):
     plt.bar(y_pos, performance, align='center', alpha=0.5)
     print("about to render the graphics!!!!!!!! ")
     f = io.BytesIO()
-    fig.savefig(f,format='svg')
-    print(f)
- #   render(req,"index.html",{"charto": plt.bar(y_pos, performance, align='center', alpha=0.5)})
-    #render(req,"index.html",{"charto":f})
-    return(fig)
+    fig.savefig(f,format='png')
+    f.seek(0)
+    image=base64.b64encode(f.getvalue())
+    #return render(request,"index.html",{'charto':image})
+    if (year != 'ALL Years'):
+      df['Year'] = df['Time'].apply(fetch_year)
+      df = df[df.Year==year]
+      df['Day_of_week'] = df['Time'].apply(fetch_date)
+    if (df.size != 0):
+      df['Year'] = df['Time'].apply(fetch_year)
+      df['Day_of_week'] = df['Time'].apply(fetch_date)
+      l_dict = {"listo":df.to_html()}
+      #pdb.set_trace()
+      print("about to call return render !!!")
+      return render(request,"index.html",{"listo":df.to_html,'charto':image})
+    else:
+       return (render(request,"index.html",context=dictstatus)) 
+    
 

@@ -20,5 +20,6 @@ from ufo import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index),
-    path('getdata/',views.getdata)
+    path('genbarchart/',views.genbarchart,name="genbarchart"),
+    path('getdata/',views.getdata,name="getdata"),
 ]
