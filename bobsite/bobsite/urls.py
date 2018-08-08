@@ -21,5 +21,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index),
     path('genbarchart/',views.genbarchart,name="genbarchart"),
-    path('getdata/',views.getdata,name="getdata"),
 ]
