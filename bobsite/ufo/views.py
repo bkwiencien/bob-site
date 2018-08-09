@@ -34,6 +34,8 @@ def genbarchart(request):
     fig = plt.figure()
     numb = tuple(t.values)
     plt.rcParams["figure.figsize"] = [len(numb),len(numb)]
+    plt.rcParams['font.family'] = 'sans-serif'
+    plt.title("ditribution of ufo shapes "+ state)
     #pdb.set_trace()
     categories = tuple(t.index)
     y_pos = np.arange(len(categories))
