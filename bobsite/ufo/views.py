@@ -55,6 +55,6 @@ def genbarchart(request):
       df['Day_of_week'] = df['Time'].apply(fetch_date)
       l_dict = {"listo":df.to_html()}
       #pdb.set_trace()
-      return render(request,"index.html",{"listo":df.to_html,'charto':image})
+      return render(request,"dataview.html",{"listo":df.to_html,'charto':image})
     else:
        return (render(request,"index.html",context=dictstatus)) 
