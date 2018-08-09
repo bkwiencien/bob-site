@@ -10,7 +10,6 @@ import io
 import pdb
 import base64
 
-
 # Create your views here.
 def index(request):
      dict = {"form":UserForm}
@@ -37,7 +36,6 @@ def genbarchart(request):
     plt.rcParams["figure.figsize"] = [len(numb),len(numb)]
     #pdb.set_trace()
     categories = tuple(t.index)
-    #numb = tuple(t.values)
     y_pos = np.arange(len(categories))
     plt.xticks(y_pos, categories,rotation='vertical')
     plt.bar(y_pos, numb, align='center', alpha=0.5,width=.1)
@@ -54,7 +52,6 @@ def genbarchart(request):
       df['Year'] = df['Time'].apply(fetch_year)
       df['Day_of_week'] = df['Time'].apply(fetch_date)
       l_dict = {"listo":df.to_html()}
-      #pdb.set_trace()
       return render(request,"dataview.html",{"listo":df.to_html,'charto':image})
     else:
        return (render(request,"index.html",context=dictstatus)) 
