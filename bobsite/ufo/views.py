@@ -19,6 +19,22 @@ def fetch_year(x):
 def fetch_date(x):
     day_dict={0:'Sunday',1:'Monday',2:'Tuesday',3:'Wednesday',4:'Thurdday',5:'Friday',6:'Saturday'}
     return(day_dict[pd.to_datetime(x).weekday()])
+def gen_day_of_week(frame):
+    fig = plt.figure()
+    numb = tuple(frame.values)
+    plt.rcParams["figure.figsize"] = [5,5]
+    plt.rcParams['font.family'] = 'sans-serif'
+    plt.title("ditribution of ufo reports by day of week")
+    dayname = tuple(frame.index)
+    y_pos = np.arange(len(dayname))
+    plt.xticks(y_pos, dayname,rotation='vertical')
+    plt.bar(y_pos, numb, align='center', alpha=0.5,width=.1)
+    f = io.BytesIO()
+    fig.savefig(f,format='png',bbox_inches='tight')
+    f.seek(0)
+    image=base64.b64encode(f.getvalue())
+    image=str(image,'utf-8')
+    return(image)    
 def genbarchart(request):
     plt.switch_backend('agg')
     dictstatus = {"status":"no data for that timeframe"}
@@ -26,11 +42,13 @@ def genbarchart(request):
     year  = request.POST['your_year']
     df = pd.read_csv('http://bit.ly/uforeports')
     df = df[df.State==state]
+    df['Year'] = df['Time'].apply(fetch_year)
     if (year != 'ALL Years'):
-      df['Year'] = df['Time'].apply(fetch_year)
-      df = df[df.Year==year]
-      df['Day_of_week'] = df['Time'].apply(fetch_date)
+     df = df[df.Year==year]
+    df['Day_of_week'] = df['Time'].apply(fetch_date)
     t = df['Shape Reported'].value_counts()
+    tt = df['Day_of_week'].value_counts();
+    weekday_image = gen_day_of_week(tt)
     fig = plt.figure()
     numb = tuple(t.values)
     plt.rcParams["figure.figsize"] = [len(numb),len(numb)]
@@ -54,6 +72,6 @@ def genbarchart(request):
       df['Year'] = df['Time'].apply(fetch_year)
       df['Day_of_week'] = df['Time'].apply(fetch_date)
       l_dict = {"listo":df.to_html()}
-      return render(request,"dataview.html",{"listo":df.to_html,'charto':image})
+      return render(request,"dataview.html",{"listo":df.to_html,'chartdayoweek':weekday_image,'charto':image})
     else:
        return (render(request,"index.html",context=dictstatus)) 
