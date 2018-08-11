@@ -28,7 +28,7 @@ def gen_day_of_week(frame):
     y_pos = np.arange(len(dayname))
     #plt.rcParams["figure.figsize"] = [len(numb),len(numb)]
     plt.xticks(y_pos, dayname,rotation='vertical')
-    plt.rcParams["figure.figsize"] = [len(y_pos),len(numb)]
+    #plt.rcParams["figure.figsize"] = [len(y_pos),len(numb)]
     plt.bar(y_pos, numb, align='center', alpha=1.0,width=.2)
     f = io.BytesIO()
     fig.savefig(f,format='png',bbox_inches='tight')
@@ -58,7 +58,7 @@ def genbarchart(request):
     #pdb.set_trace()
     categories = tuple(t.index)
     y_pos = np.arange(len(categories))
-    plt.rcParams["figure.figsize"] = [len(y_pos),len(y_pos)]
+    #plt.rcParams["figure.figsize"] = [len(y_pos),len(y_pos)]
     plt.xticks(y_pos, categories,rotation='vertical')
     plt.bar(y_pos, numb, align='center', alpha=1.0,width=.2)
     f = io.BytesIO()
