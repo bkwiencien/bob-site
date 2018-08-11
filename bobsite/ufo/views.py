@@ -22,13 +22,14 @@ def fetch_date(x):
 def gen_day_of_week(frame):
     fig = plt.figure()
     numb = tuple(frame.values)
-    plt.rcParams["figure.figsize"] = [5,5]
     plt.rcParams['font.family'] = 'sans-serif'
     plt.title("ditribution of ufo reports by day of week")
     dayname = tuple(frame.index)
     y_pos = np.arange(len(dayname))
+    #plt.rcParams["figure.figsize"] = [len(numb),len(numb)]
     plt.xticks(y_pos, dayname,rotation='vertical')
-    plt.bar(y_pos, numb, align='center', alpha=0.5,width=.1)
+    plt.rcParams["figure.figsize"] = [len(y_pos),len(numb)]
+    plt.bar(y_pos, numb, align='center', alpha=1.0,width=.2)
     f = io.BytesIO()
     fig.savefig(f,format='png',bbox_inches='tight')
     f.seek(0)
@@ -51,14 +52,15 @@ def genbarchart(request):
     weekday_image = gen_day_of_week(tt)
     fig = plt.figure()
     numb = tuple(t.values)
-    plt.rcParams["figure.figsize"] = [len(numb),len(numb)]
+    #plt.rcParams["figure.figsize"] = [len(numb),len(numb)]
     plt.rcParams['font.family'] = 'sans-serif'
     plt.title("ditribution of ufo shapes "+ state)
     #pdb.set_trace()
     categories = tuple(t.index)
     y_pos = np.arange(len(categories))
+    plt.rcParams["figure.figsize"] = [len(y_pos),len(y_pos)]
     plt.xticks(y_pos, categories,rotation='vertical')
-    plt.bar(y_pos, numb, align='center', alpha=0.5,width=.1)
+    plt.bar(y_pos, numb, align='center', alpha=1.0,width=.2)
     f = io.BytesIO()
     fig.savefig(f,format='png',bbox_inches='tight')
     f.seek(0)
@@ -72,6 +74,7 @@ def genbarchart(request):
       df['Year'] = df['Time'].apply(fetch_year)
       df['Day_of_week'] = df['Time'].apply(fetch_date)
       l_dict = {"listo":df.to_html()}
+      #plt.close()
       return render(request,"dataview.html",{"listo":df.to_html,'chartdayoweek':weekday_image,'charto':image})
     else:
        return (render(request,"index.html",context=dictstatus)) 
