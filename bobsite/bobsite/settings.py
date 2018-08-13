@@ -17,6 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 print(f"BASE_DIR = {BASE_DIR}")
 #TEMPLATE_DIRS.append(os.path.join(BASE_DIR,'bobsite/'))
 TEMPLATE_DIRS.append(os.path.join(BASE_DIR,'ufo/'))
+TEMPLATE_DIRS.append(os.path.join(BASE_DIR,'comments/'))
 print(f"TEMPLATE_DIRS = {TEMPLATE_DIRS}")
 
 
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ufo',
+    'comments',
 ]
 
 MIDDLEWARE = [
