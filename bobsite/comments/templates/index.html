@@ -12,6 +12,8 @@
 	<div class="container" id="container1">
      <div class="jumbotron" id="jumbo1">	
       <h4><center>Enter Comment:</center></h4>
+      <br>
+      <center><p>Comments are saved in a mysql DB.</p></center>
       <div id="formdiv-comment" class="form-group">
          <center><form action="/comment/getcomment" id="form-comment" method="post">
            {% csrf_token %}
