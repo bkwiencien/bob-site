@@ -16,8 +16,8 @@ TEMPLATE_DIRS=[]
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 print(f"BASE_DIR = {BASE_DIR}")
 #TEMPLATE_DIRS.append(os.path.join(BASE_DIR,'bobsite/'))
-TEMPLATE_DIRS.append(os.path.join(BASE_DIR,'ufo/'))
-TEMPLATE_DIRS.append(os.path.join(BASE_DIR,'comments/'))
+TEMPLATE_DIRS.append(os.path.join(BASE_DIR,'ufo/templates'))
+TEMPLATE_DIRS.append(os.path.join(BASE_DIR,'comments/templates'))
 print(f"TEMPLATE_DIRS = {TEMPLATE_DIRS}")
 
 
@@ -61,7 +61,7 @@ ROOT_URLCONF = 'bobsite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': TEMPLATE_DIRS,
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,8 +82,13 @@ WSGI_APPLICATION = 'bobsite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'comments',
+        'USER': 'bob',
+        'PASSWORD': 'bob',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 

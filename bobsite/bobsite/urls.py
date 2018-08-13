@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from ufo import views
+from comments import views as cviews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index),
     path('genbarchart/',views.genbarchart,name="genbarchart"),
+    path('comments/',cviews.comments),
 ]
