@@ -6,3 +6,5 @@ from .forms import CommentForm
 
 def comments(request):
      return( render(request,set.TEMPLATE_DIRS[1]+'/index.html',{"form":CommentForm}))
+def getcomment(request):
+     return((render(request,set.TEMPLATE_DIRS[1]+'/thanks.html')))

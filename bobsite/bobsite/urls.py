@@ -23,4 +23,5 @@ urlpatterns = [
     path('',views.index),
     path('genbarchart/',views.genbarchart,name="genbarchart"),
     path('comments/',cviews.comments),
+    path('comments/getcomment/',cviews.getcomment),
 ]
