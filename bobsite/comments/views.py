@@ -7,4 +7,6 @@ from .forms import CommentForm
 def comments(request):
      return( render(request,set.TEMPLATE_DIRS[1]+'/index.html',{"form":CommentForm}))
 def getcomment(request):
+     x = request.POST.get('comment') 
+     print(x)
      return((render(request,set.TEMPLATE_DIRS[1]+'/thanks.html')))
