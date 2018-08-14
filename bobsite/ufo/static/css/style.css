@@ -8,6 +8,9 @@ body {
 footer {
 	background-color: orange;
 }
+#form-comment {
+	color: black;
+}
 #table1 {
 	border: black;
 }
@@ -25,7 +28,7 @@ footer {
 #button1 {
 	color: white;
 }
-h2 {
+h2,h4 {
 	color: white;
 }
 #form {
