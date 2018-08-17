@@ -1,1 +1,2 @@
 df = pd.read_csv('http://bit.ly/uforeports', parse_dates=['Time'])
+df=pd.read_csv('http://bit.ly/drinksbycountry')
