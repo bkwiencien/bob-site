@@ -17,7 +17,7 @@
       <div id="formdiv-comment" class="form-group">
         <!-- <center><form action="/comments/getcomment/" id="form-comment"  method="post"> -->
         <center><form  id="form-comment">  
-          <!--{% csrf_token %} -->
+          {% csrf_token %} 
            {{ form }}
          <button type="submit" id="button1" onclick="checkEmail()" class="btn btn-primary" value="Submit" >Submit</button>
          <p id="status">{{status}}</p>

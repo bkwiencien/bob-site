@@ -12,7 +12,6 @@ def comments(request):
 def getcomment(request):
      commento = request.POST.get('comment') 
      nameo    = request.POST.get('your_name')
-     print('in the view !!!!!!!!!!!!!!!!!!!!!! ' + commento + " " + nameo)
      p = Comments(comment=commento,name=nameo)
      p.save()
      return((render(request,set.TEMPLATE_DIRS[1]+'/thanks.html')))
