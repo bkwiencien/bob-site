@@ -17,8 +17,6 @@ function checkEmail() {
         your_name:  emailo,
     },
     function(data, status){
-    	console.log(data)
-        //window.location.href = data;
         document.write(data)
     });
 
