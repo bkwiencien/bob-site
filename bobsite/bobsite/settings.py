@@ -18,6 +18,7 @@ print(f"BASE_DIR = {BASE_DIR}")
 #TEMPLATE_DIRS.append(os.path.join(BASE_DIR,'bobsite/'))
 TEMPLATE_DIRS.append(os.path.join(BASE_DIR,'ufo/templates'))
 TEMPLATE_DIRS.append(os.path.join(BASE_DIR,'comments/templates'))
+TEMPLATE_DIRS.append(os.path.join(BASE_DIR,'bankperformance/templates'))
 print(f"TEMPLATE_DIRS = {TEMPLATE_DIRS}")
 
 
@@ -42,8 +43,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'dash',
+    'dash.contrib.layouts.android',
+    'dash.contrib.layouts.bootstrap2',
+    'dash.contrib.layouts.windows8',
+    'dash.contrib.plugins.dummy',
+    'dash.contrib.plugins.image',
+    'dash.contrib.plugins.memo',
+    'dash.contrib.plugins.rss_feed',
+    'dash.contrib.plugins.url',
+    'dash.contrib.plugins.video',
+    'dash.contrib.plugins.weather',
     'ufo',
     'comments',
+    'bankperformance',
 ]
 
 MIDDLEWARE = [
